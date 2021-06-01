@@ -1,0 +1,55 @@
+{
+    "policies": [
+        {
+            "id": "bc862563-e1a5-4a22-aa5c-744876fd9336",
+            "name": "CVE-2021-20305: Use of a Broken or Risky Cryptographic Algorithm",
+            "description": "Alert on deployments with images containing use of a Broken or Risky Cryptographic Algorith, specifically CVE-2021-20305",
+            "rationale": "CVE-2021-20305 compromises confidentiality and stability of systems",
+            "remediation": "Update the container image to include a fix for CVE-2021-20305. More information here: https://access.redhat.com/security/cve/CVE-2021-20305",
+            "disabled": false,
+            "categories": [
+                "Vulnerability Management"
+            ],
+            "fields": null,
+            "lifecycleStages": [
+                "BUILD",
+                "DEPLOY"
+            ],
+            "whitelists": [],
+            "exclusions": [],
+            "scope": [],
+            "severity": "HIGH_SEVERITY",
+            "enforcementActions": [
+                "FAIL_BUILD_ENFORCEMENT",
+                "SCALE_TO_ZERO_ENFORCEMENT",
+                "UNSATISFIABLE_NODE_CONSTRAINT_ENFORCEMENT"
+            ],
+            "notifiers": [],
+            "lastUpdated": "2021-06-01T13:26:18.418195629Z",
+            "SORTName": "",
+            "SORTLifecycleStage": "",
+            "SORTEnforcement": false,
+            "policyVersion": "1.1",
+            "policySections": [
+                {
+                    "sectionName": "",
+                    "policyGroups": [
+                        {
+                            "fieldName": "CVE",
+                            "booleanOperator": "OR",
+                            "negate": false,
+                            "values": [
+                                {
+                                    "value": "CVE-2021-20305"
+                                },
+                                {
+                                    "value": "RHSA-2021:1206"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
