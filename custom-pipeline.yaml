@@ -1,0 +1,55 @@
+apiVersion: tekton.dev/v1beta1
+kind: Pipeline
+metadata:
+  creationTimestamp: '2021-06-01T11:49:54Z'
+  generation: 5
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:description': {}
+          'f:params': {}
+          'f:resources': {}
+          'f:tasks': {}
+      manager: Mozilla
+      operation: Update
+      time: '2021-06-01T11:58:04Z'
+  name: custom-pipeline
+  namespace: stackrox-pipeline-demo
+  selfLink: >-
+    /apis/tekton.dev/v1beta1/namespaces/stackrox-pipeline-demo/pipelines/custom-pipeline
+  uid: 87243106-dc1d-4d46-bce4-7ac21d2d6fc1
+spec:
+  description: Rox demo pipeline
+  params:
+    - default: 'registry.redhat.io/ubi8/openjdk-11:1.3-11'
+      description: 'Full name of image to scan (example -- gcr.io/rox/sample:5.0-rc1)'
+      name: image
+      type: string
+  tasks:
+    - name: image-scan
+      params:
+        - name: image
+          value: $(params.image)
+        - name: rox_api_token
+          value: roxsecrets
+        - name: rox_central_endpoint
+          value: roxsecrets
+        - name: output_format
+          value: pretty
+      taskRef:
+        kind: ClusterTask
+        name: custom-image-scan
+    - name: image-check
+      params:
+        - name: image
+          value: $(params.image)
+        - name: rox_api_token
+          value: roxsecrets
+        - name: rox_central_endpoint
+          value: roxsecrets
+      taskRef:
+        kind: ClusterTask
+        name: custom-image-check
