@@ -3,9 +3,9 @@
 git clone https://github.com/mglantz/rhacs-demo
 cd rhacs-demo
 oc create acstest
-oc create -f ac
+oc create -f custom_image_check.json
+oc create -f custom_image_scan.json
+oc create -f acs_quarkus_policy.json
+oc create -f pipeline_pv.json
 ```
-
-* Create cluster tasks: custom-image-check and custom-image-scan, then create the pipeline from custom-pipeline.
-* Go into RHACS and configure registry.redhat.io integration and create policy from acs_policy.json.
-* Run pipeline and see it work.
+* Run pipeline
