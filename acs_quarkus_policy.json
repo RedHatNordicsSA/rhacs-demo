@@ -2,10 +2,10 @@
     "policies": [
         {
             "id": "5194d189-e6a2-4d73-b9c8-92c972760736",
-            "name": "CVE-2020-13956: Vulnerable Apache HttpClient",
-            "description": "Apache HttpClient versions prior to version 4.5.13 and 5.0.3 can misinterpret malformed authority component in request URIs passed to the library as java.net.URI object and pick the wrong target host for request execution.",
-            "rationale": "To prevent man-in-the-middle attacks",
-            "remediation": "Your software is using a vulnerable version of the Apache HttpClient. Update your software to include a fix for https://www.cvedata.com/cve/CVE-2020-13956/ ",
+            "name": "CVE-2020-25638: hibernate-core: SQL injection vulnerability",
+            "description": "A flaw was found in hibernate-core in versions prior to and including 5.4.23.Final. A SQL injection in the implementation of the JPA Criteria API can permit unsanitized literals when a literal is used in the SQL comments of the query. This flaw could allow an attacker to access unauthorized information or possibly conduct further attacks. The highest threat from this vulnerability is to data confidentiality and integrity.",
+            "rationale": "Preventing SQL injection attacks",
+            "remediation": "Your software is vulnerable for a SQL injection attack. Update your software. Read more here: https://access.redhat.com/security/cve/CVE-2020-25638",
             "disabled": false,
             "categories": [
                 "Vulnerability Management"
@@ -25,7 +25,7 @@
                 "UNSATISFIABLE_NODE_CONSTRAINT_ENFORCEMENT"
             ],
             "notifiers": [],
-            "lastUpdated": "2021-06-03T09:26:14.582463076Z",
+            "lastUpdated": "2021-06-03T12:47:14.354629991Z",
             "SORTName": "",
             "SORTLifecycleStage": "",
             "SORTEnforcement": false,
@@ -40,7 +40,7 @@
                             "negate": false,
                             "values": [
                                 {
-                                    "value": "CVE-2020-13956"
+                                    "value": "CVE-2020-25638"
                                 }
                             ]
                         }
