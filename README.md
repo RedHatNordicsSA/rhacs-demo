@@ -6,7 +6,7 @@
 ```
 git clone https://github.com/mglantz/rhacs-demo
 cd rhacs-demo
-oc create acstest
+oc create project acstest
 oc new-app --name=q-app-git quay.io/quarkus/ubi-quarkus-native-s2i:20.1.0-java11~https://github.com/tqvarnst/q-app.git
 oc create -f custom_image_check.json
 oc create -f custom_image_scan.json
