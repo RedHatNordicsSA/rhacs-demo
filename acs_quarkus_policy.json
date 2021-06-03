@@ -1,0 +1,52 @@
+{
+    "policies": [
+        {
+            "id": "5194d189-e6a2-4d73-b9c8-92c972760736",
+            "name": "CVE-2020-13956: Vulnerable Apache HttpClient",
+            "description": "Apache HttpClient versions prior to version 4.5.13 and 5.0.3 can misinterpret malformed authority component in request URIs passed to the library as java.net.URI object and pick the wrong target host for request execution.",
+            "rationale": "To prevent man-in-the-middle attacks",
+            "remediation": "Your software is using a vulnerable version of the Apache HttpClient. Update your software to include a fix for https://www.cvedata.com/cve/CVE-2020-13956/ ",
+            "disabled": false,
+            "categories": [
+                "Vulnerability Management"
+            ],
+            "fields": null,
+            "lifecycleStages": [
+                "BUILD",
+                "DEPLOY"
+            ],
+            "whitelists": [],
+            "exclusions": [],
+            "scope": [],
+            "severity": "HIGH_SEVERITY",
+            "enforcementActions": [
+                "FAIL_BUILD_ENFORCEMENT",
+                "SCALE_TO_ZERO_ENFORCEMENT",
+                "UNSATISFIABLE_NODE_CONSTRAINT_ENFORCEMENT"
+            ],
+            "notifiers": [],
+            "lastUpdated": "2021-06-03T09:26:14.582463076Z",
+            "SORTName": "",
+            "SORTLifecycleStage": "",
+            "SORTEnforcement": false,
+            "policyVersion": "1.1",
+            "policySections": [
+                {
+                    "sectionName": "",
+                    "policyGroups": [
+                        {
+                            "fieldName": "CVE",
+                            "booleanOperator": "OR",
+                            "negate": false,
+                            "values": [
+                                {
+                                    "value": "CVE-2020-13956"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
