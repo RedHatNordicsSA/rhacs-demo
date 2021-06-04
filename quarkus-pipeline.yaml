@@ -43,7 +43,7 @@ spec:
     - default: .
       name: PATH_CONTEXT
       type: string
-    - default: 'image-registry.openshift-image-registry.svc:5000/acstest/q-app-git:main'
+    - default: 'image-registry.openshift-image-registry.svc:5000/acstest/q-app-git:CHANGEME'
       name: image
       type: string
   tasks:
