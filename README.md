@@ -1,5 +1,7 @@
 # Simple Tecton + RHACS demo
 
+![acs/tecton demo](img/demo.png)
+
 * Provision OCP4 ACS cluster from RHPDS
 * Run below commands to setup the demo
 ```
