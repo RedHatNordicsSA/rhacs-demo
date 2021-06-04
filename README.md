@@ -7,7 +7,7 @@ The demo displays detection of a vulnerability (CVE-2020-25638: hibernate-core: 
 
 * Provision OCP4 ACS cluster from RHPDS
 * Run below commands to setup the demo
-```
+
 ```
 git clone https://github.com/RedHatNordicsSA/rhacs-demo
 cd rhacs-demo
