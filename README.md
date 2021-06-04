@@ -18,6 +18,7 @@ oc create -f custom-image-scan.yaml
 oc create -f pipeline-pv.yaml
 oc get secrets roxsecrets -n stackrox-pipeline-demo -o yaml|grep -v resourceVersion|sed 's/stackrox-pipeline-demo/acstest/g' >roxsecrets.yaml
 oc create -f roxsecrets.yaml
+oc create -f quarkus-pipeline.yaml
 ```
 
 * Create ACS policy from acs_quarkus_policy.json which will detect an issue in the built image via the RHACS web console.
