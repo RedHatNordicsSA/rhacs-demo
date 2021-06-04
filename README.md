@@ -16,11 +16,11 @@ oc create -f roxsecrets.yaml
 ```
 
 * Create ACS policy which will detect an issue in the built image via the RHACS web console.
-[acs policy](img/acs.png)
+![acs policy](img/acs.png)
 
 * Runing a pipeline that fails:
-[failing pipeline)(img/fail.png)
+![failing pipeline)(img/fail.png)
 
 * Running a pipeline that passes scanning
-[passing pipeline](img/pass.png)
+![passing pipeline](img/pass.png)
 
