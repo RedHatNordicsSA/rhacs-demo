@@ -1,8 +1,7 @@
 # Simple Tecton + RHACS demo
 
-* Fork this and the https://github.com/mglantz/q-app repository.
-* Ensure pom.xml in https://github.com/mglantz/q-app says 1.7.3.Final version of Quarkus.
-* Point quarkus-pipeline.yaml to your own git repository.
+* Provision OCP4 ACS cluster from RHPDS
+* Run below commands to setup the demo
 ```
 git clone https://github.com/mglantz/rhacs-demo
 cd rhacs-demo
@@ -12,8 +11,16 @@ oc create -f custom_image_check.json
 oc create -f custom_image_scan.json
 oc create -f acs_quarkus_policy.json
 oc create -f pipeline_pv.json
+oc get secrets roxsecrets -n stackrox-pipeline-demo -o yaml|grep -v resourceVersion|sed 's/stackrox-pipeline-demo/acstest/g' >roxsecrets.yaml
+oc create -f roxsecrets.yaml
 ```
-* Create ACS policy from acs_quarkus_policy.json.
-* Run pipeline, select PV named actest. See how pipeline run fails.
-* Change q-app pom.xml to version 1.9.1.Final of Quarkus.
-* Re-run pipeline and see how pipeline succeeds.
+
+* Create ACS policy which will detect an issue in the built image via the RHACS web console.
+[acs policy](img/acs.png)
+
+* Runing a pipeline that fails:
+[failing pipeline)(img/fail.png)
+
+* Running a pipeline that passes scanning
+[passing pipeline](img/pass.png)
+
