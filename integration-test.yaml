@@ -1,0 +1,27 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  generation: 1
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:steps': {}
+      manager: Mozilla
+      operation: Update
+      time: '2021-06-04T08:33:46Z'
+  name: integration-test
+  namespace: acstest
+  selfLink: /apis/tekton.dev/v1beta1/namespaces/acstest/tasks/integration-test
+  uid: fe8cda45-66b8-4db5-b76f-f4cbaf824953
+spec:
+  steps:
+    - command:
+        - /bin/bash
+        - '-c'
+        - sleep 18
+      image: registry.redhat.io/ubi7/ubi-minimal
+      name: maven-integration-tests
+      resources: {}
