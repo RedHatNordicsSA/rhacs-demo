@@ -13,9 +13,9 @@ cd rhacs-demo
 oc create namespace acstest
 oc project acstest
 oc new-app --name=q-app-git quay.io/quarkus/ubi-quarkus-native-s2i:20.1.0-java11~https://github.com/tqvarnst/q-app.git
-oc create -f custom_image_check.yaml
-oc create -f custom_image_scan.yaml
-oc create -f pipeline_pv.yaml
+oc create -f custom-image-check.yaml
+oc create -f custom-image-scan.yaml
+oc create -f pipeline-pv.yaml
 oc get secrets roxsecrets -n stackrox-pipeline-demo -o yaml|grep -v resourceVersion|sed 's/stackrox-pipeline-demo/acstest/g' >roxsecrets.yaml
 oc create -f roxsecrets.yaml
 ```
