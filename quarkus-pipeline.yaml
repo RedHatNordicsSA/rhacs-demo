@@ -1,10 +1,11 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  selfLink: /apis/tekton.dev/v1beta1/namespaces/acstest/pipelines/q-app-git
-  name: q-app-git
-  uid: 24d8aadc-f59f-4a92-8fb0-5d7e6f95d20b
-  generation: 10
+  generation: 21
+  labels:
+    app.kubernetes.io/instance: q-app-git
+    pipeline.openshift.io/runtime: java
+    pipeline.openshift.io/type: kubernetes
   managedFields:
     - apiVersion: tekton.dev/v1beta1
       fieldsType: FieldsV1
@@ -23,17 +24,17 @@ metadata:
           'f:workspaces': {}
       manager: Mozilla
       operation: Update
-  namespace: acstest
-  labels:
-    app.kubernetes.io/instance: q-app-git
-    pipeline.openshift.io/runtime: java
-    pipeline.openshift.io/type: kubernetes
+      time: '2021-06-03T07:25:17Z'
+  name: q-app-git
+  namespace: todo-test
+  selfLink: /apis/tekton.dev/v1beta1/namespaces/acstest/pipelines/q-app-git
+  uid: 24d8aadc-f59f-4a92-8fb0-5d7e6f95d20b
 spec:
   params:
     - default: q-app-git
       name: APP_NAME
       type: string
-    - default: 'https://github.com/mglantz/q-app.git'
+    - default: 'https://github.com/helo/q-app.git'
       name: GIT_REPO
       type: string
     - default: main
@@ -42,7 +43,7 @@ spec:
     - default: .
       name: PATH_CONTEXT
       type: string
-    - default: 'image-registry.openshift-image-registry.svc:5000/acstest/q-app-git'
+    - default: 'image-registry.openshift-image-registry.svc:5000/acstest/q-app-git:main'
       name: image
       type: string
   tasks:
@@ -68,6 +69,8 @@ spec:
           value: 'false'
         - name: PATH_CONTEXT
           value: $(params.PATH_CONTEXT)
+        - name: MAVEN_CLEAR_REPO
+          value: 'false'
       runAfter:
         - fetch-repository
       taskRef:
@@ -87,6 +90,8 @@ spec:
             - deploy/$(params.APP_NAME)
       runAfter:
         - custom-image-check
+        - code-quality-analysis
+        - integration-test
       taskRef:
         kind: ClusterTask
         name: openshift-client
@@ -118,5 +123,18 @@ spec:
       taskRef:
         kind: ClusterTask
         name: custom-image-check
+    - name: code-quality-analysis
+      runAfter:
+        - fetch-repository
+      taskRef:
+        kind: Task
+        name: code-quality-analysis
+    - name: integration-test
+      runAfter:
+        - fetch-repository
+      taskRef:
+        kind: Task
+        name: integration-test
   workspaces:
     - name: workspace
+  resources: []
