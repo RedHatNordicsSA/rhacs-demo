@@ -18,6 +18,8 @@ oc create -f custom-image-scan.yaml
 oc create -f pipeline-pv.yaml
 oc get secrets roxsecrets -n stackrox-pipeline-demo -o yaml|grep -v resourceVersion|sed 's/stackrox-pipeline-demo/acstest/g' >roxsecrets.yaml
 oc create -f roxsecrets.yaml
+oc create -f code-quality-analysis.yaml
+oc create -f integration-test.yaml
 oc create -f quarkus-pipeline.yaml
 ```
 
