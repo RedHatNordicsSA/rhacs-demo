@@ -34,6 +34,8 @@ oc create -f quarkus-pipeline.yaml
 * Disable the "Red Hat Package Manager in Image", "FIXABLE CVSS >= 7" and "Docker CIS 4.4: Ensure images are scanned and rebuilt to include security patches" policies. For demo purposes, as we want a clean pass by just fixing one single thing.
 ![disable policy](img/disable.png)
 
+* PREP/fixme: Currently before doing the demo, once, you need to run the pipeline with the IMAGE tag removed.
+
 * Run a pipeline that fails. By setting GIT_REVISION to `release` and IMAGE to q-app-git:release, we will build our Quarkus app based Quarkus 1.7.3.Final. CVE-2020-25638 is not fixed in this image, which will show in the scan of the built image. 
 ![failing pipeline](img/fail.png)
 
