@@ -23,6 +23,9 @@ oc create -f roxsecrets.yaml
 * Create ACS policy from acs_quarkus_policy.json which will detect an issue in the built image via the RHACS web console.
 ![acs policy](img/acs.png)
 
+* Disable the "Red Hat Package Manager in Image" and "Docker CIS 4.4: Ensure images are scanned and rebuilt to include security patches" policies. For demo purposes, as we want a clean pass.
+![disable policy](img/disable.png)
+
 * Run a pipeline that fails. By setting GIT_REVISION to `release` and IMAGE to q-app-git:release, we will build our Quarkus app based Quarkus 1.7.3.Final. CVE-2020-25638 is not fixed in this image, which will show in the scan of the built image. 
 ![failing pipeline](img/fail.png)
 
