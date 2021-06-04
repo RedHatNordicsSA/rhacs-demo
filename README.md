@@ -19,7 +19,7 @@ oc create -f roxsecrets.yaml
 ![acs policy](img/acs.png)
 
 * Runing a pipeline that fails:
-![failing pipeline)(img/fail.png)
+![failing pipeline](img/fail.png)
 
 * Running a pipeline that passes scanning
 ![passing pipeline](img/pass.png)
