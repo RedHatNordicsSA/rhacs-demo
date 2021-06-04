@@ -8,18 +8,23 @@ The demo displays detection of a vulnerability (CVE-2020-25638: hibernate-core: 
 * Provision OCP4 ACS cluster from RHPDS
 * Run below commands to setup the demo
 ```
+```
 git clone https://github.com/RedHatNordicsSA/rhacs-demo
 cd rhacs-demo
 oc create namespace acstest
 oc project acstest
+oc import-image quarkus/ubi-quarkus-native-s2i --from=quay.io/quarkus/ubi-quarkus-native-s2i:20.1.0-java11 --confirm
 oc new-app --name=q-app-git quay.io/quarkus/ubi-quarkus-native-s2i:20.1.0-java11~https://github.com/tqvarnst/q-app.git
+oc cancel-build bc/q-app-git  
+oc patch bc/q-app-git -p '{"spec":{"resources":{"limits":{"cpu":"4", "memory":"4Gi"}}}}'
+oc start-build q-app-git
 oc create -f custom-image-check.yaml
 oc create -f custom-image-scan.yaml
 oc create -f pipeline-pv.yaml
 oc get secrets roxsecrets -n stackrox-pipeline-demo -o yaml|grep -v resourceVersion|sed 's/stackrox-pipeline-demo/acstest/g' >roxsecrets.yaml
 oc create -f roxsecrets.yaml
-oc create -f code-quality-analysis.yaml
 oc create -f integration-test.yaml
+oc create -f code-quality-analysis.yaml
 oc create -f quarkus-pipeline.yaml
 ```
 
