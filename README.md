@@ -11,6 +11,7 @@ The demo displays detection of a vulnerability (CVE-2020-25638: hibernate-core: 
 git clone https://github.com/RedHatNordicsSA/rhacs-demo
 cd rhacs-demo
 oc create namespace acstest
+oc project acstest
 oc new-app --name=q-app-git quay.io/quarkus/ubi-quarkus-native-s2i:20.1.0-java11~https://github.com/tqvarnst/q-app.git
 oc create -f custom_image_check.yaml
 oc create -f custom_image_scan.yaml
