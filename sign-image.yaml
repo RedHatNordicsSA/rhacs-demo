@@ -1,0 +1,26 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  generation: 1
+  managedFields:
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
+          .: {}
+          'f:params': {}
+          'f:steps': {}
+      manager: Mozilla
+      operation: Update
+  name: sign-image
+  namespace: acstest
+  selfLink: /apis/tekton.dev/v1beta1/namespaces/acstest/tasks/sign-image
+spec:
+  steps:
+    - command:
+        - /bin/bash
+        - '-c'
+        - sleep 3
+      image: registry.redhat.io/ubi7/ubi-minimal
+      name: ''
+      resources: {}
