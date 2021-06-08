@@ -3,7 +3,7 @@ This is a simple demonstration of building a Quarkus application using Tecton in
 
 The demo displays detection of a vulnerability (CVE-2020-25638: hibernate-core: SQL injection) in Quarkus 1.7.3.Final. Updating our build to Quarkus 1.11.6.Final, we can see how our build now passes scanning and how the build gets deployed.
 
-![acs/tecton demo](img/demo.png)
+![acs tecton demo](img/demo.png)
 
 * Provision OCP4 ACS cluster from RHPDS
 * Run below commands to setup the demo
