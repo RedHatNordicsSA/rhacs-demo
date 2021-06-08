@@ -25,6 +25,7 @@ oc get secrets roxsecrets -n stackrox-pipeline-demo -o yaml|grep -v resourceVers
 oc create -f roxsecrets.yaml
 oc create -f integration-test.yaml
 oc create -f code-quality-analysis.yaml
+oc create -f sign-image.yaml
 oc create -f quarkus-pipeline.yaml
 ```
 
