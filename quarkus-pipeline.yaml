@@ -1,11 +1,11 @@
 apiVersion: tekton.dev/v1beta1
 kind: Pipeline
 metadata:
-  generation: 21
-  labels:
-    app.kubernetes.io/instance: q-app-git
-    pipeline.openshift.io/runtime: java
-    pipeline.openshift.io/type: kubernetes
+  selfLink: /apis/tekton.dev/v1beta1/namespaces/acstest/pipelines/q-app-git
+  name: q-app-git
+  uid: 37c8bbd0-1e3c-4e4e-b99f-b1df201937a0
+  creationTimestamp: '2021-06-04T14:02:25Z'
+  generation: 2
   managedFields:
     - apiVersion: tekton.dev/v1beta1
       fieldsType: FieldsV1
@@ -19,16 +19,22 @@ metadata:
         'f:spec':
           .: {}
           'f:params': {}
+          'f:workspaces': {}
+      manager: kubectl-create
+      operation: Update
+    - apiVersion: tekton.dev/v1beta1
+      fieldsType: FieldsV1
+      fieldsV1:
+        'f:spec':
           'f:resources': {}
           'f:tasks': {}
-          'f:workspaces': {}
       manager: Mozilla
       operation: Update
-      time: '2021-06-03T07:25:17Z'
-  name: q-app-git
   namespace: acstest
-  selfLink: /apis/tekton.dev/v1beta1/namespaces/acstest/pipelines/q-app-git
-  uid: 24d8aadc-f59f-4a92-8fb0-5d7e6f95d20b
+  labels:
+    app.kubernetes.io/instance: q-app-git
+    pipeline.openshift.io/runtime: java
+    pipeline.openshift.io/type: kubernetes
 spec:
   params:
     - default: q-app-git
@@ -43,7 +49,8 @@ spec:
     - default: .
       name: PATH_CONTEXT
       type: string
-    - default: 'image-registry.openshift-image-registry.svc:5000/acstest/q-app-git:CHANGEME'
+    - default: >-
+        image-registry.openshift-image-registry.svc:5000/acstest/q-app-git:CHANGEME
       name: image
       type: string
   tasks:
@@ -89,9 +96,7 @@ spec:
             - status
             - deploy/$(params.APP_NAME)
       runAfter:
-        - custom-image-check
-        - code-quality-analysis
-        - integration-test
+        - sign-image
       taskRef:
         kind: ClusterTask
         name: openshift-client
@@ -135,6 +140,13 @@ spec:
       taskRef:
         kind: Task
         name: integration-test
+    - name: sign-image
+      runAfter:
+        - custom-image-check
+        - code-quality-analysis
+        - integration-test
+      taskRef:
+        kind: Task
+        name: sign-image
   workspaces:
     - name: workspace
-  resources: []
