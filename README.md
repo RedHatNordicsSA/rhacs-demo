@@ -9,6 +9,7 @@ The demo displays detection of a vulnerability (CVE-2020-25638: hibernate-core: 
 * Run below commands to setup the demo
 
 ```
+oc login ...
 git clone https://github.com/RedHatNordicsSA/rhacs-demo
 cd rhacs-demo
 oc create namespace acstest
