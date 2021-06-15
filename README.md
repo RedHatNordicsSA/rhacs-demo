@@ -1,4 +1,4 @@
-# Multi-product demo: OpenShift, Tekton and RHACS
+# Multi-product demo: OpenShift, Tekton, RHACS and Quarkus
 This is a simple demonstration of building a Quarkus application using Tecton in OpenShift 4.6 and integrating the pipeline to Red Hat Advanced Cluster Security (ACS/RHACS). 
 
 The demo displays detection of a vulnerability (CVE-2020-25638: hibernate-core: SQL injection) in Quarkus 1.7.3.Final. Updating our build to Quarkus 1.11.6.Final, we can see how our build now passes scanning and how the build gets deployed.
