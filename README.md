@@ -39,8 +39,8 @@ oc create -f quarkus-pipeline.yaml
 * PREP/fixme: Currently before doing the demo, once, you need to run the pipeline with the IMAGE tag removed.
 
 * Run a pipeline that fails. By setting GIT_REVISION to `release` and IMAGE to q-app-git:release, we will build our Quarkus app based Quarkus 1.7.3.Final. CVE-2020-25638 is not fixed in this image, which will show in the scan of the built image. 
-![failing pipeline](img/fail.png)
+![passing pipeline](img/pass.png)
 
 * Run a pipeline that passes scanning. By changing GIT_REVISION to `main` and IMAGE to q-app-git:main, we will build our Quarkus app based on Quarkus 1.11.6.Final which contains the fix for CVE-2020-25638, causing the scan to pass and the app to deploy.
-![passing pipeline](img/pass.png)
+![failing pipeline](img/fail.png)
 
